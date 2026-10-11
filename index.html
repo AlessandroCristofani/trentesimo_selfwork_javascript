@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trentesimo Selfwork Javascript</title>
+</head>
+<body>
+    <script>
+        let agenda = {
+            contacts: [
+                {name: 'Nicola', number: 3331111111},
+                {name: 'Lorenzo', number: 3332222222},
+                {name: 'Paola', number: 3333333333},
+                {name: 'Jenny', number: 3334444444}
+            ],
+
+            show_contacts: function() {
+                this.contacts.forEach((contact, i) => console.log(`${i}. ${contact.name} - ${contact.number}`));
+            },
+
+            add_contact: function(new_name, new_number) {
+                this.contacts.push({name: new_name, number: new_number});
+            },
+
+            search_contact: function(searched_name) {
+                let contact = this.contacts.find((contact) => contact.name.toLowerCase() == searched_name.toLowerCase());
+                if (contact) {
+                    console.log(`${contact.name} - ${contact.number}`);
+                } else {
+                    console.log("This contact is not present in your address book.");
+                }
+            },
+
+            remove_contact: function(removed_name) {
+                let contact = this.contacts.find((contact) => contact.name.toLowerCase() == removed_name.toLowerCase());
+                if (contact) {
+                    let index = this.contacts.indexOf(contact);
+                    this.contacts.splice(index, 1);
+                } else {
+                    console.log("This contact is not present in your address book.");
+                }
+            },
+
+            modify_contact:function(searched_name,modified_number){
+                let contact = this.contacts.find((contact) => contact.name.toLowerCase() == searched_name.toLowerCase());
+                if (contact) {
+                    let index = this.contacts.indexOf(contact);
+                    this.contacts[index].number=modified_number;
+                } else {
+                    console.log("This contact is not present in your address book.");
+                }
+            }
+        };
+
+        agenda.add_contact('Yoda', 3335555555);
+        agenda.search_contact('yoda');
+        agenda.remove_contact('Jenny');
+        agenda.modify_contact('Lorenzo',3334567094);
+        agenda.show_contacts();
+    </script>
+</body>
+</html>
